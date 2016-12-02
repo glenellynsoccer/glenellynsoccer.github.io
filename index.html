@@ -2419,11 +2419,15 @@ _Component = function(Comp){
           val = cell.html();
           app.stores[table].find(val, function(item){
             var text, i$, ref$, len$;
-            text = '';
-            for (i$ = 0, len$ = (ref$ = columns).length; i$ < len$; ++i$) {
-              (fn$.call(this, i$, ref$[i$]));
+            if (Object.keys(item).length === 0) {
+              cell.html(val);
+            } else {
+              text = '';
+              for (i$ = 0, len$ = (ref$ = columns).length; i$ < len$; ++i$) {
+                (fn$.call(this, i$, ref$[i$]));
+              }
+              cell.html(text);
             }
-            cell.html(text);
             function fn$(j, column){
               text = text + ' ' + item[column];
             }
